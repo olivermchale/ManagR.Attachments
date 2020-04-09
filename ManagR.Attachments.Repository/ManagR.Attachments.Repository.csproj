@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ManagR.Attachments.Data\ManagR.Attachments.Data.csproj" />
+    <ProjectReference Include="..\ManagR.Attachments.Models\ManagR.Attachments.Models.csproj" />
+    <ProjectReference Include="..\ManagR.Attachments.Services\ManagR.Attachments.Services.csproj" />
+  </ItemGroup>
+
+</Project>
