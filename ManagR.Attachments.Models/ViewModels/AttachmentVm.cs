@@ -4,12 +4,13 @@ using System.Text;
 
 namespace ManagR.Attachments.Models.ViewModels
 {
-    public class BrowserFileVm
+    public class AttachmentVm
     {
+        public Guid Id { get; set; }
         public string Name { get; set; }
-        public int LastModified { get; set; }
-        public DateTime LastModifiedDate { get; set; }
         public int Size { get; set; }
-        public string Type { get; set; }
+        public Guid UploaderId { get; set; }
+        public string UploadedBy { get; set; }
+        public DateTime UploadedOn { get; set; }
     }
 }

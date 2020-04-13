@@ -53,7 +53,9 @@ namespace ManagR.Attachments
             services.AddScoped<IBlobStorageService, BlobStorageService>();
             services.AddScoped<IAttachmentsRepository, AttachmentsRepository>();
 
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using ManagR.Attachments.Data;
 using System.Collections.Generic;
 using ManagR.Attachments.Services.Interfaces;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace ManagR.Attachments.Repository
 {
@@ -16,6 +18,7 @@ namespace ManagR.Attachments.Repository
         public AttachmentsRepository(AttachmentsDb context, IBlobStorageService blobStorageService)
         {
             _context = context;
+            _blobStorageService = blobStorageService;
         }
         public async Task<PreparedFileVm> PrepareFileUpload(UploadFilesVm files)
         {
@@ -27,7 +30,7 @@ namespace ManagR.Attachments.Repository
                 var fileMetadata = new FileDto
                 {
                     Id = fileId,
-                    LastModifiedDate = file.LastModifiedDate,
+                    ItemId = files.ItemId,
                     Name = file.Name,
                     Size = file.Size,
                     Status = FileStatus.Uploading,
@@ -37,20 +40,45 @@ namespace ManagR.Attachments.Repository
                     UploaderId = files.UploaderId
                 };
 
-                //file.Id = fileId;
+                preparedFiles.Add(new FileVm
+                {
+                    Id = fileId,
+                    Name = file.Name,
+                    Size = file.Size,
+                    Type = file.Type
+                });
 
-                //preparedFiles.Add(file);
-
-                _context.Attachments.Add(fileMetadata);
+                await _context.Attachments.AddAsync(fileMetadata);              
             }
-
             await _context.SaveChangesAsync();
-            var sas = _blobStorageService.GetSasToken();
+            var sas = await _blobStorageService.GetContainerSasUri();
             return new PreparedFileVm
             {
                 Files = preparedFiles,
                 SasToken = sas
             };
+        }
+
+        public async Task<List<AttachmentVm>> GetAttachments(Guid id)
+        {
+            try
+            {
+                return await _context.Attachments.Where(a => a.ItemId == id)
+                    .Select(i => new AttachmentVm
+                    {
+                        Id = i.Id,
+                        Name = i.Name,
+                        Size = i.Size,
+                        UploadedBy = i.UploadedBy,
+                        UploadedOn = i.UploadedOn,
+                        UploaderId = i.UploaderId
+                    }).ToListAsync();
+            }
+            catch (Exception e)
+            {
+                // exception getting attachments....
+            }
+            return null;
         }
     }
 }

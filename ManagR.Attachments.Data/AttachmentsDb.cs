@@ -25,7 +25,6 @@ namespace ManagR.Attachments.Data
             modelBuilder.Entity<FileDto>(b =>
             {
                 b.Property(p => p.Id).IsRequired();
-                b.Property(p => p.LastModifiedDate).IsRequired();
                 b.Property(p => p.Name).IsRequired();
                 b.Property(p => p.Size).IsRequired();
                 b.Property(p => p.Status).IsRequired();

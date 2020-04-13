@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ManagR.Attachments.Data.Migrations
 {
     [DbContext(typeof(AttachmentsDb))]
-    [Migration("20200409111836_init")]
-    partial class init
+    [Migration("20200413122024_init4")]
+    partial class init4
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,9 +26,6 @@ namespace ManagR.Attachments.Data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("LastModifiedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -48,15 +45,15 @@ namespace ManagR.Attachments.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("UploadedOn")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<DateTime>("UploadedOn")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("UploaderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Attachment");
+                    b.ToTable("Attachments");
                 });
 #pragma warning restore 612, 618
         }

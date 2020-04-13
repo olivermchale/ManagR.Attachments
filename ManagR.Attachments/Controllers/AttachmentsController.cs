@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using ManagR.Attachments.Models.ViewModels;
 using ManagR.Attachments.Repository.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,15 @@ namespace ManagR.Attachments.Controllers
         [HttpPost]
         public async Task<IActionResult> PrepareAttachments([FromBody] UploadFilesVm files)
         {
-            return Ok(_attachmentsRepository.PrepareFileUpload(files));
+            var preparedAttachments = await _attachmentsRepository.PrepareFileUpload(files);
+            return Ok(preparedAttachments);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetAttachments(Guid id)
+        {
+            var attachments = await _attachmentsRepository.GetAttachments(id);
+            return Ok(attachments);
         }
     }
 }

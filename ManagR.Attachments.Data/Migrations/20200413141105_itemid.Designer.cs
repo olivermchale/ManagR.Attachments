@@ -4,14 +4,16 @@ using ManagR.Attachments.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ManagR.Attachments.Data.Migrations
 {
     [DbContext(typeof(AttachmentsDb))]
-    partial class AttachmentsDbModelSnapshot : ModelSnapshot
+    [Migration("20200413141105_itemid")]
+    partial class itemid
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

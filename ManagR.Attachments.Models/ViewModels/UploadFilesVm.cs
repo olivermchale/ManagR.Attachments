@@ -7,7 +7,8 @@ namespace ManagR.Attachments.Models.ViewModels
     public class UploadFilesVm
     {
         public Guid UploaderId { get; set; }
+        public Guid ItemId { get; set; }
         public string UploadedBy { get; set; }
-        public List<BrowserFileVm> Files { get; set; }
+        public List<FileMetadataVm> Files { get; set; }
     }
 }

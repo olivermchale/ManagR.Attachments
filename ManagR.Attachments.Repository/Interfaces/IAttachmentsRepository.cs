@@ -9,5 +9,7 @@ namespace ManagR.Attachments.Repository.Interfaces
     public interface IAttachmentsRepository
     {
         public Task<PreparedFileVm> PrepareFileUpload(UploadFilesVm files);
+
+        public Task<List<AttachmentVm>> GetAttachments(Guid id);
     }
 }

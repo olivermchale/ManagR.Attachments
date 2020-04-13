@@ -8,5 +8,6 @@ namespace ManagR.Attachments.Services.Interfaces
     public interface IBlobStorageService
     {
         public string GetSasToken();
+        public Task<string> GetContainerSasUri(string storedPolicyName = null);
     }
 }
