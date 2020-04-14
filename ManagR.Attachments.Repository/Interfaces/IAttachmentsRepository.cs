@@ -11,5 +11,7 @@ namespace ManagR.Attachments.Repository.Interfaces
         public Task<PreparedFileVm> PrepareFileUpload(UploadFilesVm files);
 
         public Task<List<AttachmentVm>> GetAttachments(Guid id);
+
+        public Task<bool> UpdateAttachmentStatus(UpdateStatusVm status);
     }
 }

@@ -27,5 +27,16 @@ namespace ManagR.Attachments.Controllers
             var attachments = await _attachmentsRepository.GetAttachments(id);
             return Ok(attachments);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateAttachmentStatus([FromBody] UpdateStatusVm status)
+        {
+            var success = await _attachmentsRepository.UpdateAttachmentStatus(status);
+            if (success)
+            {
+                return Ok(success);
+            }
+            return new StatusCodeResult(500);
+        }
     }
 }

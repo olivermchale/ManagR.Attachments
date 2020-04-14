@@ -69,6 +69,7 @@ namespace ManagR.Attachments.Repository
                         Id = i.Id,
                         Name = i.Name,
                         Size = i.Size,
+                        Status = i.Status,
                         UploadedBy = i.UploadedBy,
                         UploadedOn = i.UploadedOn,
                         UploaderId = i.UploaderId
@@ -79,6 +80,25 @@ namespace ManagR.Attachments.Repository
                 // exception getting attachments....
             }
             return null;
+        }
+
+        public async Task<bool> UpdateAttachmentStatus(UpdateStatusVm status)
+        {
+            try
+            {
+                var attachment = await _context.Attachments.Where(a => a.Id == status.Id).FirstOrDefaultAsync();
+                if (attachment != null)
+                {
+                    attachment.Status = status.Status;
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                // exception updating attachment status
+            }
+            return false;
         }
     }
 }
