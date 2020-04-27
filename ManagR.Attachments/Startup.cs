@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using ManagR.Attachments.Data;
@@ -47,6 +48,33 @@ namespace ManagR.Attachments
                 });
             });
 
+            JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
+
+            var accountUri = Configuration.GetValue<Uri>("AccountsUrl");
+            services.AddAuthentication("Bearer")
+            .AddJwtBearer("Bearer", config =>
+            {
+                config.Authority = accountUri.ToString();
+                config.RequireHttpsMetadata = false;
+                config.Audience = "ManagR";
+            });
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("leader", builder =>
+                {
+                    builder.RequireClaim("role", "analyst", "leader");
+                });
+                options.AddPolicy("user", builder =>
+                {
+                    builder.RequireClaim("role", "user", "spectator");
+                });
+                options.AddPolicy("spectator", builder =>
+                {
+                    builder.RequireClaim("role", "spectator");
+                });
+            });
+
             services.AddDbContext<AttachmentsDb>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("Attachments")));
 
@@ -69,6 +97,10 @@ namespace ManagR.Attachments
             app.UseRouting();
 
             app.UseCors("ManagRAppServices");
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

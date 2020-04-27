@@ -2,10 +2,12 @@
 using System.Threading.Tasks;
 using ManagR.Attachments.Models.ViewModels;
 using ManagR.Attachments.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagR.Attachments.Controllers
 {
+    [Authorize(Policy = "spectator")]
     public class AttachmentsController : Controller
     {
         private IAttachmentsRepository _attachmentsRepository;
