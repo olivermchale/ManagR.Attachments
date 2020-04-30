@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagR.Attachments", "ManagR.Attachments\ManagR.Attachments.csproj", "{4BFA012C-D9B4-49D4-B778-EB1C3085B53B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagR.Attachments", "ManagR.Attachments\ManagR.Attachments.csproj", "{4BFA012C-D9B4-49D4-B778-EB1C3085B53B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagR.Attachments.Data", "ManagR.Attachments.Data\ManagR.Attachments.Data.csproj", "{5EA93503-DB0A-4CDE-808D-495A4D160404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagR.Attachments.Data", "ManagR.Attachments.Data\ManagR.Attachments.Data.csproj", "{5EA93503-DB0A-4CDE-808D-495A4D160404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagR.Attachments.Models", "ManagR.Attachments.Models\ManagR.Attachments.Models.csproj", "{2DBB7B89-CFC2-4907-BACB-314B1CA54DFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagR.Attachments.Models", "ManagR.Attachments.Models\ManagR.Attachments.Models.csproj", "{2DBB7B89-CFC2-4907-BACB-314B1CA54DFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagR.Attachments.Repository", "ManagR.Attachments.Repository\ManagR.Attachments.Repository.csproj", "{2C22D6FA-50BB-4B19-A980-1848B214D14F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagR.Attachments.Repository", "ManagR.Attachments.Repository\ManagR.Attachments.Repository.csproj", "{2C22D6FA-50BB-4B19-A980-1848B214D14F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagR.Attachments.Services", "ManagR.Attachments.Services\ManagR.Attachments.Services.csproj", "{EAED8B49-70AB-44E6-A79D-59BE1A18B878}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ManagR.Attachments.Services", "ManagR.Attachments.Services\ManagR.Attachments.Services.csproj", "{EAED8B49-70AB-44E6-A79D-59BE1A18B878}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagR.Attachments.Repository.Tests", "ManagR.Attachments.Repository.Tests\ManagR.Attachments.Repository.Tests.csproj", "{E69C6769-6C83-48AF-A63E-FCADFC3FEA74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ManagR.Attachments.Controllers.Tests", "ManagR.Attachments.Controllers.Tests\ManagR.Attachments.Controllers.Tests.csproj", "{F9F34242-27F0-416D-9164-735795434834}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{EAED8B49-70AB-44E6-A79D-59BE1A18B878}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAED8B49-70AB-44E6-A79D-59BE1A18B878}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAED8B49-70AB-44E6-A79D-59BE1A18B878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E69C6769-6C83-48AF-A63E-FCADFC3FEA74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E69C6769-6C83-48AF-A63E-FCADFC3FEA74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E69C6769-6C83-48AF-A63E-FCADFC3FEA74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E69C6769-6C83-48AF-A63E-FCADFC3FEA74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9F34242-27F0-416D-9164-735795434834}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9F34242-27F0-416D-9164-735795434834}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9F34242-27F0-416D-9164-735795434834}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9F34242-27F0-416D-9164-735795434834}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

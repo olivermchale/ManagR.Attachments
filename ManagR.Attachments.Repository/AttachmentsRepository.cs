@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using ManagR.Attachments.Services.Interfaces;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace ManagR.Attachments.Repository
 {
@@ -15,10 +16,12 @@ namespace ManagR.Attachments.Repository
     {
         private AttachmentsDb _context;
         private IBlobStorageService _blobStorageService;
-        public AttachmentsRepository(AttachmentsDb context, IBlobStorageService blobStorageService)
+        private ILogger<AttachmentsRepository> _logger;
+        public AttachmentsRepository(AttachmentsDb context, IBlobStorageService blobStorageService, ILogger<AttachmentsRepository> logger)
         {
             _context = context;
             _blobStorageService = blobStorageService;
+            _logger = logger;
         }
         public async Task<PreparedFileVm> PrepareFileUpload(UploadFilesVm files)
         {
@@ -51,7 +54,7 @@ namespace ManagR.Attachments.Repository
                 await _context.Attachments.AddAsync(fileMetadata);              
             }
             await _context.SaveChangesAsync();
-            var sas = await _blobStorageService.GetContainerSasUri();
+            var sas = await _blobStorageService.GetContainerSasUri("sas");
             return new PreparedFileVm
             {
                 Files = preparedFiles,
@@ -77,7 +80,7 @@ namespace ManagR.Attachments.Repository
             }
             catch (Exception e)
             {
-                // exception getting attachments....
+                _logger.LogError("Exception when getting attachments,  Exception:" + e + "Stack trace:" + e.StackTrace, "id: " + id);
             }
             return null;
         }
@@ -96,7 +99,7 @@ namespace ManagR.Attachments.Repository
             }
             catch (Exception e)
             {
-                // exception updating attachment status
+                _logger.LogError("Exception when updating status, Exception:" + e + "Stack trace:" + e.StackTrace, "status: " + status);
             }
             return false;
         }

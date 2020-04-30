@@ -14,7 +14,7 @@ namespace ManagR.Attachments.Services
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(ConnectionString);
             var blobClient = storageAccount.CreateCloudBlobClient();
 
-            // get a reference tot he container for the shared access signature
+            // get a reference to the container for the shared access signature
             var container = blobClient.GetContainerReference("managr");
 
             SharedAccessBlobPolicy adHocPolicy = new SharedAccessBlobPolicy()
