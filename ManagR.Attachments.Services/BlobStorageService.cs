@@ -28,8 +28,8 @@ namespace ManagR.Attachments.Services
 
             // Generate the shared access signature on the container, setting the constraints directly on the signature.
             var sasContainerToken = container.GetSharedAccessSignature(adHocPolicy, null);
-            return "?sv=2019-02-02&ss=b&srt=sco&sp=rwdlac&se=2020-06-24T19:55:21Z&st=2020-04-14T11:55:21Z&spr=https&sig=NvcZ0ctPtvzxqsPJwKi97PL1dSRTlCqPxTI6bKZWkOc%3D";
-            // return sasContainerToken;
+            // return "?sv=2019-02-02&ss=b&srt=sco&sp=rwdlac&se=2020-06-24T19:55:21Z&st=2020-04-14T11:55:21Z&spr=https&sig=NvcZ0ctPtvzxqsPJwKi97PL1dSRTlCqPxTI6bKZWkOc%3D";
+            return sasContainerToken;
         }
     }
 }
